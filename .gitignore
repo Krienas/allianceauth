@@ -8,6 +8,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+venv/
 build/
 develop-eggs/
 dist/
@@ -41,11 +42,10 @@ nosetests.xml
 coverage.xml
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
-*.log
+*.log*
 
 # Sphinx documentation
 docs/_build/
@@ -53,5 +53,12 @@ docs/_build/
 # PyBuilder
 target/
 
-.vagrant/
-alliance_auth/settings.py
+*Thumbs.db
+nginx_config.txt
+
+#celerybeat
+*.pid
+celerybeat-schedule
+
+#pycharm
+.idea/*

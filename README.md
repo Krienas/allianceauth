@@ -1,104 +1,38 @@
+# We've Moved to [GitLab](https://gitlab.com/allianceauth/allianceauth)
+
+
+
 Alliance Auth
 ============
 
-Alliance service auth to help large scale alliances manage services.
-Built for "The 99 Percent" open for anyone to use
-
-[Project Website](http://r4stl1n.github.io/allianceauth/)
-
-[Dev Setup Guide] (http://r4stl1n.github.io/allianceauth/quicksetup.html)
-
-[Production Setup Guide] (http://r4stl1n.github.io/allianceauth/fullsetup.html)
-
-Special Thanks: 
-    Thanking [Nikdoof](https://github.com/nikdoof), without his old auth 
-    implementation this project wouldn't be as far as it is now.
-
-Note:
-
-    Please keep your admin account and normal accounts separate. If you are the admin only use 
-    the admin account for admin stuff do not attempt to use it for your personal services. 
-    Create a new normal account for this or things will break.
-    
-Update Note:
-    
-    The recent HRApplication update broke evolve somehow.. Im sure its in the way i 
-    redid the models. To update when you get the evolve error is first. We need to 
-    remove the old hr tables from mysql. We then need to wipe the evolve records in 
-    the admin section of the auth. Also keep in mind that modifying the mysql database 
-    is dangerous and could corrupt the database if mistakes are made.
-    
-    python manage.py syncdb
-    python manage.py evolve --hint --execute
-    
-    To wipe the mysql databse execute the following:
-        mysql -u MYSQLUSER -p
-        use ALLIANCEAUTHDATABASE;
-        drop table hrapplications_hrapplication;
-        drop table hrapplications_hrapplicationcomment;
-        
-    Now go back to the admin interface in both of the evolve sections delete all the entries.
-    After that go to your shell and run the following.
-        python manage.py syncdb;
-        python manage.py shell;
-              from util import bootstrap_permissions
-              bootstrap_permissions()
-              exit()
-    
-    This next step is only needed if you hadn't updated since teh IPBoard update.
-    Back to mysql database and execute the following:
-        mysql -u MYSQLUSER -p
-        use ALLIANCEAUTHDATBASE;
-        ALTER TABLE authentication_authservicesinfo ADD ipboard_password  VARCHAR(254);
-        ALTER TABLE authentication_authservicesinfo ADD ipboard_username  VARCHAR(254);
-        
-    Now restart mysql and httpd
-        sudo /etc/init.d/mysqld restart
-        sudo /etc/init.d/apache2 restart
-    
-Requirements:
-
-    # Django Stuff #
-    django 1.6.1
-    django-evolution
-    django-bootstrap-form
-    django-celery
-    
-    # Python Stuff #
-    python-mysql-connector
-    python-mysqld
-    python-passlib
-    python-evelink
-    python-openfire
-    python-xmpp
-    python-dnspython
-    
-    # Needed Apps
-	Rabbitmq server
-        
-Startup Instructions:
-
-    ./bootstrap.sh (Sudo if needed)
-    ./startup.sh
-    ./shutdown.sh
-
-Vagrant Instructions:
-
-    Copy the scripts to the root directory before running
-
-Special Permissions In Admin:
-
-    auth | user | alliance_member ( Added auto by auth when a member is verified )
-    auth | user | group_management ( Access to add members to groups within the alliance )
-    auth | user | human_resources ( Corp only access to view applications )
-    auth | user | jabber_broadcast ( Access to broadcast a message over jabber to specific groups or all)
-    auth | user | blue_member ( Auto Added to people who register has a blue when adding api key)
-    auth | user | corp_stats (View basic corp auth stats *who is authed etc*)
-    auth | user | timer_management ( Access to create and remove timers)
-    auth | user | srp_management ( Allows for an individual to create and remove srp fleets and fleet data)
+[![Join the chat at https://gitter.im/R4stl1n/allianceauth](https://badges.gitter.im/R4stl1n/allianceauth.svg)](https://gitter.im/R4stl1n/allianceauth?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Documentation Status](https://readthedocs.org/projects/allianceauth/badge/?version=latest)](http://allianceauth.readthedocs.io/?badge=latest)
+[![Build Status](https://travis-ci.org/allianceauth/allianceauth.svg?branch=master)](https://travis-ci.org/allianceauth/allianceauth)
+[![Coverage Status](https://coveralls.io/repos/github/allianceauth/allianceauth/badge.svg?branch=master)](https://coveralls.io/github/allianceauth/allianceauth?branch=master)
 
 
-Beta Testers/ Bug Fixers:
+An auth system for EVE Online to help in-game organizations manage online service access.
 
-     IskFiend ( Bug Fixes and Server Configuration )
-     Mr McClain (Bug Fixes and server configuration)
+[Read the docs here.](http://allianceauth.rtfd.io)
+
+[Get help on gitter](https://gitter.im/R4stl1n/allianceauth) or submit an Issue.
+
+
+Active Developers:
+
+ - [Adarnof](https://github.com/adarnof/)
+ - [Basraah](https://github.com/basraah/)
+
+Beta Testers / Bug Fixers:
+
+ - [ghoti](https://github.com/ghoti/)
+ - [mmolitor87](https://github.com/mmolitor87/)
+ - [TargetZ3R0](https://github.com/TargetZ3R0)
+ - [kaezon](https://github.com/kaezon/)
+ - [orbitroom](https://github.com/orbitroom/)
+ - [tehfiend](https://github.com/tehfiend/)
+
+Special thanks to [Nikdoof](https://github.com/nikdoof/), as his [auth](https://github.com/nikdoof/test-auth) was the foundation for the original work on this project.
+
+### Contributing
+Make sure you have signed the [License Agreement](https://developers.eveonline.com/resource/license-agreement) by logging in at [https://developers.eveonline.com](https://developers.eveonline.com) before submitting any pull requests.
